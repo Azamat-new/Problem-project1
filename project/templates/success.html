@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вы записаны! — QueueLess</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body class="form-page">
+
+<header class="header">
+    <div class="container">
+        <a href="/" class="logo">Queue<span>Less</span></a>
+    </div>
+</header>
+
+<main class="form-main">
+    <div class="success-wrapper">
+        <div class="success-icon">✅</div>
+        <h1>Вы записаны!</h1>
+        <p class="success-sub">Приходите ко времени — без очередей</p>
+
+        <div class="appointment-card">
+            <div class="appt-row">
+                <span class="appt-label">👤 Пациент</span>
+                <span class="appt-val">{{ appointment.name }}</span>
+            </div>
+            <div class="appt-row">
+                <span class="appt-label">📞 Телефон</span>
+                <span class="appt-val">{{ appointment.phone }}</span>
+            </div>
+            <div class="appt-row">
+                <span class="appt-label">🩺 Врач</span>
+                <span class="appt-val">{{ appointment.get_doctor_display }}</span>
+            </div>
+            <div class="appt-row">
+                <span class="appt-label">📅 Дата</span>
+                <span class="appt-val">{{ appointment.date }}</span>
+            </div>
+            <div class="appt-row">
+                <span class="appt-label">🕐 Время</span>
+                <span class="appt-val">{{ appointment.time }}</span>
+            </div>
+            {% if appointment.note %}
+            <div class="appt-row">
+                <span class="appt-label">📝 Примечание</span>
+                <span class="appt-val">{{ appointment.note }}</span>
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="success-actions">
+            <a href="{% url 'register' %}" class="btn primary">Записаться ещё раз</a>
+            <a href="/" class="btn ghost">На главную</a>
+        </div>
+    </div>
+</main>
+
+</body>
+</html>
