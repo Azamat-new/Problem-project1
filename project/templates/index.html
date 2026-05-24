@@ -2,56 +2,71 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QueueLess — Без очередей в больницах</title>
-    <link rel="stylesheet" href="/static/css/style.css">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
 <body>
 
 <header class="header">
     <div class="container">
-        <h1 class="logo">QueueLess</h1>
+        <a href="/" class="logo">Queue<span>Less</span></a>
         <nav>
             <a href="#about">О сервисе</a>
             <a href="#how">Как работает</a>
             <a href="{% url 'register' %}" class="nav-btn">Записаться</a>
         </nav>
+        <button class="burger" onclick="toggleMenu()" aria-label="Меню">☰</button>
+    </div>
+    <div class="mobile-nav" id="mobileNav">
+        <a href="#about" onclick="toggleMenu()">О сервисе</a>
+        <a href="#how" onclick="toggleMenu()">Как работает</a>
+        <a href="{% url 'register' %}" class="nav-btn">Записаться</a>
     </div>
 </header>
 
 <section class="hero">
+    <div class="hero-bg"></div>
     <div class="container">
-        <h2>Больше никаких очередей в больницах</h2>
-        <p>Записывайтесь к врачу онлайн и приходите точно ко времени</p>
-
+        <div class="hero-badge">🏥 Онлайн-запись к врачу</div>
+        <h1>Больше никаких<br><span class="accent">очередей</span><br>в больницах</h1>
+        <p>Записывайтесь к врачу онлайн и приходите точно ко времени. Без ожидания, без стресса.</p>
         <div class="hero-buttons">
-            <a href="{% url 'register' %}" class="btn">Записаться</a>
-            <a href="#how" class="btn secondary">Как это работает</a>
+            <a href="{% url 'register' %}" class="btn primary">Записаться сейчас</a>
+            <a href="#how" class="btn ghost">Как это работает</a>
+        </div>
+        <div class="hero-stats">
+            <div class="stat"><strong>2 мин</strong><span>на запись</span></div>
+            <div class="stat-divider"></div>
+            <div class="stat"><strong>7 врачей</strong><span>специалистов</span></div>
+            <div class="stat-divider"></div>
+            <div class="stat"><strong>0 очередей</strong><span>гарантируем</span></div>
         </div>
     </div>
 </section>
 
 <section id="about" class="features">
     <div class="container">
-        <h2>О сервисе</h2>
-        <p class="section-text">
-            QueueLess — это сервис, который помогает пациентам записываться к врачу без очередей.
-            Клиники управляют потоком пациентов, а люди приходят точно ко времени.
-        </p>
-
-        <div class="grid">
+        <div class="section-label">О СЕРВИСЕ</div>
+        <h2>Почему QueueLess?</h2>
+        <p class="section-text">Мы убираем главную боль пациентов — ожидание. Клиники управляют потоком, а вы приходите точно ко времени.</p>
+        <div class="grid three">
             <div class="card">
-                <h3>⏱ Экономия времени</h3>
-                <p>Никаких длинных очередей</p>
+                <div class="card-icon">⏱</div>
+                <h3>Экономия времени</h3>
+                <p>Никаких длинных очередей. Запишитесь онлайн за 2 минуты и приходите в назначенное время.</p>
             </div>
-
-            <div class="card">
-                <h3>📱 Онлайн-запись</h3>
-                <p>Быстро и удобно с телефона</p>
+            <div class="card highlight">
+                <div class="card-icon">📱</div>
+                <h3>Онлайн-запись</h3>
+                <p>Удобно с телефона или компьютера. Выберите врача, дату и время — всё просто и быстро.</p>
             </div>
-
             <div class="card">
-                <h3>🔔 Напоминания</h3>
-                <p>Вы не забудете о приёме</p>
+                <div class="card-icon">🔔</div>
+                <h3>Напоминания</h3>
+                <p>Вы не забудете о приёме. Система напомнит о предстоящем визите заранее.</p>
             </div>
         </div>
     </div>
@@ -59,42 +74,63 @@
 
 <section id="how" class="steps">
     <div class="container">
-        <h2>Как это работает</h2>
-
-        <div class="grid">
-            <div class="card">
-                <h3>1️⃣ Выберите врача</h3>
-                <p>Найдите нужного специалиста</p>
+        <div class="section-label">КАК РАБОТАЕТ</div>
+        <h2>Три простых шага</h2>
+        <div class="steps-grid">
+            <div class="step">
+                <div class="step-number">01</div>
+                <div class="step-content">
+                    <h3>Выберите врача</h3>
+                    <p>Найдите нужного специалиста из списка: терапевт, кардиолог, стоматолог и другие.</p>
+                </div>
             </div>
-
-            <div class="card">
-                <h3>2️⃣ Выберите время</h3>
-                <p>Удобный слот без очереди</p>
+            <div class="step-arrow">→</div>
+            <div class="step">
+                <div class="step-number">02</div>
+                <div class="step-content">
+                    <h3>Выберите время</h3>
+                    <p>Подберите удобную дату и время. Только свободные слоты без очереди.</p>
+                </div>
             </div>
-
-            <div class="card">
-                <h3>3️⃣ Приходите</h3>
-                <p>В своё время — без ожидания</p>
+            <div class="step-arrow">→</div>
+            <div class="step">
+                <div class="step-number">03</div>
+                <div class="step-content">
+                    <h3>Приходите</h3>
+                    <p>Приходите точно к своему времени. Врач уже ждёт вас — без ожидания.</p>
+                </div>
             </div>
         </div>
-
-        <a href="{% url 'register' %}" class="btn big">Записаться сейчас</a>
+        <div class="cta-inline">
+            <a href="{% url 'register' %}" class="btn primary big">Записаться бесплатно</a>
+        </div>
     </div>
 </section>
 
-<section class="cta">
+<section class="cta-banner">
     <div class="container">
-        <h2>Начните уже сегодня</h2>
-        <p>Подключите клинику или запишитесь как пациент</p>
-        <a href="{% url 'register' %}" class="btn">Попробовать</a>
+        <div class="cta-content">
+            <h2>Начните уже сегодня</h2>
+            <p>Запишитесь к врачу прямо сейчас — это займёт меньше двух минут</p>
+            <a href="{% url 'register' %}" class="btn white">Попробовать бесплатно</a>
+        </div>
+        <div class="cta-deco">🏥</div>
     </div>
 </section>
 
 <footer class="footer">
     <div class="container">
-        <p>© 2026 QueueLess</p>
+        <div class="footer-inner">
+            <a href="/" class="logo footer-logo">Queue<span>Less</span></a>
+            <p class="footer-copy">© 2026 QueueLess — Без очередей в больницах</p>
+        </div>
     </div>
 </footer>
 
+<script>
+function toggleMenu() {
+    document.getElementById('mobileNav').classList.toggle('open');
+}
+</script>
 </body>
 </html>
